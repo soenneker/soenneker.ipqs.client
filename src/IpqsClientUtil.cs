@@ -1,5 +1,6 @@
 using System;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using Soenneker.Ipqs.Client.Abstract;
 using Soenneker.Utils.HttpClientCache.Abstract;
@@ -16,9 +17,9 @@ public class IpqsClientUtil : IIpqsClientUtil
         _httpClientCache = httpClientCache;
     }
 
-    public ValueTask<HttpClient> Get()
+    public ValueTask<HttpClient> Get(CancellationToken cancellationToken = default)
     {
-        return _httpClientCache.Get(nameof(IpqsClientUtil));
+        return _httpClientCache.Get(nameof(IpqsClientUtil), cancellationToken: cancellationToken);
     }
 
     public async ValueTask DisposeAsync()
