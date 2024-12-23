@@ -1,9 +1,6 @@
-using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
 using Soenneker.Ipqs.Client.Abstract;
 using Soenneker.Tests.FixturedUnit;
 using Xunit;
-
 
 namespace Soenneker.Ipqs.Client.Tests;
 
@@ -15,5 +12,11 @@ public class IpqsClientUtilTests : FixturedUnitTest
     public IpqsClientUtilTests(Fixture fixture, ITestOutputHelper output) : base(fixture, output)
     {
         _util = Resolve<IIpqsClientUtil>(true);
+    }
+
+    [Fact]
+    public void Default()
+    {
+
     }
 }
