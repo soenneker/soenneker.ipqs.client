@@ -33,6 +33,6 @@ public class IpqsClientUtil : IIpqsClientUtil
     {
         GC.SuppressFinalize(this);
 
-        _httpClientCache.Remove(nameof(IpqsClientUtil));
+        _httpClientCache.RemoveSync(nameof(IpqsClientUtil));
     }
 }

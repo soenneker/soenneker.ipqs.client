@@ -13,18 +13,20 @@ public static class IpqsClientUtilRegistrar
     /// <summary>
     /// Adds <see cref="IIpqsClientUtil"/> as a singleton service. <para/>
     /// </summary>
-    public static void AddIpqsClientUtilAsSingleton(this IServiceCollection services)
+    public static IServiceCollection AddIpqsClientUtilAsSingleton(this IServiceCollection services)
     {
-        services.AddHttpClientCache();
-        services.TryAddSingleton<IIpqsClientUtil, IpqsClientUtil>();
+        services.AddHttpClientCacheAsSingleton().TryAddSingleton<IIpqsClientUtil, IpqsClientUtil>();
+
+        return services;
     }
 
     /// <summary>
     /// Adds <see cref="IIpqsClientUtil"/> as a scoped service. <para/>
     /// </summary>
-    public static void AddIpqsClientUtilAsScoped(this IServiceCollection services)
+    public static IServiceCollection AddIpqsClientUtilAsScoped(this IServiceCollection services)
     {
-        services.AddHttpClientCache();
-        services.TryAddScoped<IIpqsClientUtil, IpqsClientUtil>();
+        services.AddHttpClientCacheAsSingleton().TryAddScoped<IIpqsClientUtil, IpqsClientUtil>();
+
+        return services;
     }
 }
