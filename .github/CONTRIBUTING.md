@@ -1,4 +1,4 @@
-# Contributing to Soenneker.Ipqs.Client
+﻿# Contributing to Soenneker.Ipqs.Client
 
 We're excited that you're interested in contributing!
 
