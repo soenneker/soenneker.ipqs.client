@@ -8,7 +8,7 @@ using Soenneker.Utils.HttpClientCache.Abstract;
 namespace Soenneker.Ipqs.Client;
 
 /// <inheritdoc cref="IIpqsClientUtil"/>
-public class IpqsClientUtil : IIpqsClientUtil
+public sealed class IpqsClientUtil : IIpqsClientUtil
 {
     private readonly IHttpClientCache _httpClientCache;
 
@@ -24,15 +24,11 @@ public class IpqsClientUtil : IIpqsClientUtil
 
     public async ValueTask DisposeAsync()
     {
-        GC.SuppressFinalize(this);
-
         await _httpClientCache.Remove(nameof(IpqsClientUtil));
     }
 
     public void Dispose()
     {
-        GC.SuppressFinalize(this);
-
         _httpClientCache.RemoveSync(nameof(IpqsClientUtil));
     }
 }
