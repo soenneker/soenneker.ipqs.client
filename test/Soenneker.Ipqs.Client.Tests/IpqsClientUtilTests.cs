@@ -1,20 +1,19 @@
 using Soenneker.Ipqs.Client.Abstract;
-using Soenneker.Tests.FixturedUnit;
-using Xunit;
+using Soenneker.Tests.HostedUnit;
 
 namespace Soenneker.Ipqs.Client.Tests;
 
-[Collection("Collection")]
-public class IpqsClientUtilTests : FixturedUnitTest
+[ClassDataSource<Host>(Shared = SharedType.PerTestSession)]
+public class IpqsClientUtilTests : HostedUnitTest
 {
     private readonly IIpqsClientUtil _util;
 
-    public IpqsClientUtilTests(Fixture fixture, ITestOutputHelper output) : base(fixture, output)
+    public IpqsClientUtilTests(Host host) : base(host)
     {
         _util = Resolve<IIpqsClientUtil>(true);
     }
 
-    [Fact]
+    [Test]
     public void Default()
     {
 
