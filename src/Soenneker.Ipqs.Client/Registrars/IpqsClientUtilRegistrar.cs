@@ -6,7 +6,7 @@ using Soenneker.Utils.HttpClientCache.Registrar;
 namespace Soenneker.Ipqs.Client.Registrars;
 
 /// <summary>
-/// An async thread-safe singleton for the IPQualityScore client
+/// Registers the cached IPQualityScore HTTP transport provider.
 /// </summary>
 public static class IpqsClientUtilRegistrar
 {

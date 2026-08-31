@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 namespace Soenneker.Ipqs.Client.Abstract;
 
 /// <summary>
-/// An async thread-safe singleton for the IPQualityScore client
+/// Provides a cached HTTP transport for IPQualityScore API operation packages.
 /// </summary>
 public interface IIpqsClientUtil : IDisposable, IAsyncDisposable
 {
     /// <summary>
-    /// Gets the value.
+    /// Gets the shared HTTP transport.
     /// </summary>
     /// <param name="cancellationToken">The cancellation token.</param>
-    /// <returns>A task containing the result of the operation.</returns>
+    /// <returns>A task containing the cached client.</returns>
     ValueTask<HttpClient> Get(CancellationToken cancellationToken = default);
 }

@@ -7,10 +7,10 @@ using Soenneker.Utils.HttpClientCache.Abstract;
 
 namespace Soenneker.Ipqs.Client;
 
-/// <inheritdoc cref="IIpqsClientUtil"/>
 public sealed class IpqsClientUtil : IIpqsClientUtil
 {
     private readonly IHttpClientCache _httpClientCache;
+    private readonly string _clientId = $"{nameof(IpqsClientUtil)}:{Guid.NewGuid():N}";
 
     public IpqsClientUtil(IHttpClientCache httpClientCache)
     {
@@ -19,23 +19,16 @@ public sealed class IpqsClientUtil : IIpqsClientUtil
 
     public ValueTask<HttpClient> Get(CancellationToken cancellationToken = default)
     {
-        return _httpClientCache.Get(nameof(IpqsClientUtil), cancellationToken: cancellationToken);
+        return _httpClientCache.Get(_clientId, cancellationToken: cancellationToken);
     }
 
-    /// <summary>
-    /// Asynchronously releases resources used by the current instance.
-    /// </summary>
-    /// <returns>A task that represents the asynchronous operation.</returns>
     public async ValueTask DisposeAsync()
     {
-        await _httpClientCache.Remove(nameof(IpqsClientUtil));
+        await _httpClientCache.Remove(_clientId);
     }
 
-    /// <summary>
-    /// Releases resources used by the current instance.
-    /// </summary>
     public void Dispose()
     {
-        _httpClientCache.RemoveSync(nameof(IpqsClientUtil));
+        _httpClientCache.RemoveSync(_clientId);
     }
 }
