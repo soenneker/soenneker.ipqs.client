@@ -7,6 +7,7 @@ using Soenneker.Utils.HttpClientCache.Abstract;
 
 namespace Soenneker.Ipqs.Client;
 
+/// <inheritdoc cref="IIpqsClientUtil" />
 public sealed class IpqsClientUtil : IIpqsClientUtil
 {
     private readonly IHttpClientCache _httpClientCache;
